@@ -17,6 +17,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.lang.management.ManagementFactory;
+import java.nio.file.Files;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
@@ -210,7 +211,7 @@ public class IOStatTest extends LinuxBaseTest {
 			// write to temp file
 			File tempFile = null;
 			try {
-				tempFile = File.createTempFile(getClass().getSimpleName(), ".raw");
+				tempFile = Files.createTempFile(getClass().getSimpleName(),".raw").toFile();
 				tempFile.deleteOnExit();
 				FileInputStream devZero = new FileInputStream("/dev/zero");
 				byte[] zeroes = new byte[BUF_SIZE]; // read 8 MB

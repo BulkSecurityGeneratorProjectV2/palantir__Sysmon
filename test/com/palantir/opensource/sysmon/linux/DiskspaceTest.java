@@ -17,6 +17,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.lang.management.ManagementFactory;
+import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -108,7 +109,7 @@ public class DiskspaceTest extends LinuxBaseTest {
 			mountPoints.put(mountPoint,filesystem);
 		}
 		
-		File tempFile = File.createTempFile(getClass().getSimpleName(), ".raw");
+		File tempFile = Files.createTempFile(getClass().getSimpleName(),".raw").toFile();
 		tempFile.deleteOnExit();
 		
 		String mountPoint= null;
@@ -150,7 +151,7 @@ public class DiskspaceTest extends LinuxBaseTest {
 			devZero.close();
 
 			for(int i = 0; i < 10; i++){
-				tempFile = File.createTempFile(getClass().getSimpleName(), ".raw");
+				tempFile = Files.createTempFile(getClass().getSimpleName(),".raw").toFile();
 				tempFile.deleteOnExit();
 				tempFiles.add(tempFile);
 				FileOutputStream tmp = new FileOutputStream(tempFile);
